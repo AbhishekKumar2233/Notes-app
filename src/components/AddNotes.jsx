@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 import TextAreaField from "./TextAreaField";
 
 
-const AddNotes = ({setAddnoteshow,fetchNotes}) => {
+const AddNotes = ({setAddnoteshow,setApicall}) => {
     const [noteForm,setNoteform] = useState({
         title:'',
         description:''
@@ -47,6 +47,7 @@ const AddNotes = ({setAddnoteshow,fetchNotes}) => {
             console.log(response)
             toast.success("Note added successfully.");
             setAddnoteshow(false)
+            setApicall(true)
         }catch(error){
             console.log(error,'error')
         }finally{

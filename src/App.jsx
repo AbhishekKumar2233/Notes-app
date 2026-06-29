@@ -11,9 +11,10 @@ import GlobalLoader from './components/GlobalLoader'
 function App() {
   const { loading } = useLoader();
   
-  if(loading) return <GlobalLoader />
   
   return (
+    <>
+    {(loading) && <GlobalLoader />}
     <BrowserRouter>
     <Routes>
       <Route 
@@ -32,6 +33,7 @@ function App() {
       element={<RegisterPage />} />
     </Routes>
     </BrowserRouter>
+    </>
   )
 }
 

@@ -12,10 +12,14 @@ const Dashboard = () => {
     const [notesList,setNoteslist] = useState([])
     const {showLoader,hideLoader} = useLoader()
     const [searchValue,setSearchvalue] = useState('')
+    const [apicall,setApicall] = useState(true)
 
     useEffect(()=>{
+        if(apicall == true){
         fetchNotes()
-    },[])
+        setApicall(false)
+        }
+    },[apicall])
 
     const fetchNotes = async () => {
         try{
@@ -56,7 +60,7 @@ const Dashboard = () => {
         <Header />
         {addNoteShow === true ? <AddNotes 
           setAddnoteshow={setAddnoteshow} 
-          fetchNotes={fetchNotes}/> : 
+          setApicall={setApicall}/> : 
         <>
             <div className="w-100 h-100 p-4">
                 <div className="flex justify-between items-center gap-4">
@@ -74,7 +78,7 @@ const Dashboard = () => {
             {filteredNotelist?.length > 0 ? filteredNotelist?.map((note)=>(
                 <Note 
                 key={note.title} 
-                note={note} />
+                note={note} setApicall={setApicall} />
                 )) : <p className="text-center mt-4">No data</p>}
             </div>
         </>}

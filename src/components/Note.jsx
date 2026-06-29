@@ -4,7 +4,7 @@ import { useLoader } from "../context/LoaderContext";
 import toast from "react-hot-toast";
 
 
-const Note = ({note}) => {
+const Note = ({note,setApicall}) => {
     const {showLoader,hideLoader} = useLoader()
 
     const deleteNotefunc = async (id) => {
@@ -13,6 +13,7 @@ const Note = ({note}) => {
             const response = await deleteNote(id)
             console.log(response)
             toast.success("Note deleted successfully.");
+            setApicall(true)
         }catch(error){
             console.log(error)
         }finally{
